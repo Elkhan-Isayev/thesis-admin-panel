@@ -17,6 +17,7 @@ function App() {
         >
           Learn React
         </a>
+        <h1>Current version is {React.version}</h1>
       </header>
     </div>
   );
