@@ -1,25 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Login from './login/Login';
+import AdminPanel from './admin-panel/AdminPanel';
+import { ProtectedRoute } from './protected-route/ProtectedRoute';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <h1>Current version is {React.version}</h1>
-      </header>
+      <Switch>
+        <Route path="/" component={Login} />   
+        <ProtectedRoute path="/admin-panel" component={AdminPanel} />   
+
+        <Route path="*" component={() => "404 NOT FOUND :]"} />
+      </Switch>
     </div>
   );
 }
