@@ -100,7 +100,7 @@ export default (props = {}) => {
               <NavItem title="Dashboard" link={Routes.DashboardOverview.path} icon={faChartPie} />
               <NavItem title="Tickets" icon={faHandHoldingUsd} link={Routes.Transactions.path} />
               <NavItem title="Categories" icon={faCog} link={Routes.Settings.path} />
-              <NavItem title="NPS Score Calculator" icon={faCog} link={Routes.Settings.path} />
+              <NavItem title="NPS Score Calculator" icon={faCalendarAlt} link={Routes.Settings.path} />
             </Nav>
           </div>
         </SimpleBar>
