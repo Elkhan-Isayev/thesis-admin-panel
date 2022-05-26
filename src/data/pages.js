@@ -27,6 +27,12 @@ export default [
         "link": Routes.Tickets.path
     },
     {
+        "id": 3,
+        "name": "Nps",
+        "image": TransactionsImg,
+        "link": Routes.Nps.path
+    },
+    {
         "id": 4,
         "name": "Sign In",
         "image": SignInImg,
@@ -37,6 +43,12 @@ export default [
         "name": "Sign Up",
         "image": SignUpImg,
         "link": Routes.Signup.path
+    },
+    {
+        "id": 6,
+        "name": "Categories",
+        "image": SignUpImg,
+        "link": Routes.Categories.path
     },
     {
         "id": 9,

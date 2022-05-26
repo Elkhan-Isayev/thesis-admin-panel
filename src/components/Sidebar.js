@@ -4,12 +4,11 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket } from "@fortawesome/free-solid-svg-icons";
-import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
+import { faStar, faTicketAlt, faChartPie, faCog, faSignOutAlt, faTimes} from "@fortawesome/free-solid-svg-icons";
+import { Nav, Badge, Image, Button,  Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import { Routes } from "../routes";
-import ThemesbergLogo from "../assets/img/themesberg.svg";
 import ReactHero from "../assets/img/technologies/react-hero-logo.svg";
 import ProfilePicture from "../assets/img/team/profile-picture-3.jpg";
 
@@ -98,8 +97,10 @@ export default (props = {}) => {
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
               <NavItem title="Dashboard" link={Routes.DashboardOverview.path} icon={faChartPie} />
-              <NavItem title="Tickets" icon={faHandHoldingUsd} link={Routes.Tickets.path} />
-              {/* <NavItem title="Categories" icon={faCog} link={Routes.Settings.path} /> */}
+              <NavItem title="Tickets" icon={faTicketAlt} link={Routes.Tickets.path} />
+              <NavItem title="Categories" icon={faCog} link={Routes.Categories.path} />
+              <NavItem title="Nps" icon={faStar} link={Routes.Nps.path} />
+              
               {/* <NavItem title="NPS Score Calculator" icon={faCalendarAlt} link={Routes.Settings.path} /> */}
             </Nav>
           </div>

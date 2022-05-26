@@ -1,10 +1,12 @@
 
 export const Routes = {
     // pages
-    // Presentation: { path: "/" },
+    Presentation: { path: "/" },
     DashboardOverview: { path: "/dashboard/overview" },
-    Tickets: { path: "/" },
+    Tickets: { path: "/tickets" },
     ViewTicket: { path: "/viewticket" },
+    Categories: { path: "/categories" },
+    Nps: { path: "/nps" },
     Signin: { path: "/examples/sign-in" },
     Signup: { path: "/examples/sign-up" },
     NotFound: { path: "/examples/404" },

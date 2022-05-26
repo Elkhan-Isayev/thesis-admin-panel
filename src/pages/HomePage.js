@@ -8,8 +8,8 @@ import Upgrade from "./Upgrade";
 import DashboardOverview from "./dashboard/DashboardOverview";
 import Tickets from "./Tickets";
 import ViewTicket from './ViewTicket';
-import Settings from "./Settings";
-import BootstrapTables from "./tables/BootstrapTables";
+import Categories from "./Categories";
+import Nps from "./Nps";
 import Signin from "./examples/Signin";
 import Signup from "./examples/Signup";
 import Lock from "./examples/Lock";
@@ -81,7 +81,8 @@ export default () => (
     {/* <RouteWithSidebar exact path={Routes.Upgrade.path} component={Upgrade} /> */}
     <RouteWithSidebar exact path={Routes.Tickets.path} component={Tickets} />
     <RouteWithSidebar exact path={Routes.ViewTicket.path} component={ViewTicket} />
-    {/* <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} /> */}
+    <RouteWithSidebar exact path={Routes.Categories.path} component={Categories} />
+    <RouteWithSidebar exact path={Routes.Nps.path} component={Nps} />
 
     
 

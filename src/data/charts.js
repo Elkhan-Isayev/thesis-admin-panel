@@ -1,10 +1,10 @@
 
-import { faDesktop, faMobileAlt, faTabletAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSadTear, faSmile, faSkull } from '@fortawesome/free-solid-svg-icons';
 
 const trafficShares = [
-    { id: 1, label: "Desktop", value: 60, color: "secondary", icon: faDesktop },
-    { id: 2, label: "Mobile Web", value: 30, color: "primary", icon: faMobileAlt },
-    { id: 3, label: "Tablet Web", value: 10, color: "tertiary", icon: faTabletAlt }
+    { id: 1, label: "Detractors", value: 31, color: "danger", icon: faSadTear },
+    { id: 2, label: "Passives", value: 29, color: "primary", icon: faSkull },
+    { id: 3, label: "Promoters", value: 38, color: "tertiary", icon: faSmile }
 ];
 
 const totalOrders = [
