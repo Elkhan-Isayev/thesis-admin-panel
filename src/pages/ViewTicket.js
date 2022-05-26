@@ -10,7 +10,7 @@ export default () => {
     <>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <div className="d-block mb-4 mb-md-0">
-          <h4>Categories</h4>
+          <h4>View tickets</h4>
           <p className="mb-0">Your web analytics dashboard template.</p>
         </div>
         <div className="btn-toolbar mb-2 mb-md-0">
@@ -20,7 +20,7 @@ export default () => {
           </ButtonGroup>
         </div>
       </div>
-      <TransactionsTable />
+
     </>
   );
 };

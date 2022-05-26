@@ -22,15 +22,9 @@ export default [
     },
     {
         "id": 2,
-        "name": "Transactions",
+        "name": "Tickets",
         "image": TransactionsImg,
-        "link": Routes.Transactions.path
-    },
-    {
-        "id": 3,
-        "name": "Settings",
-        "image": SettingsImg,
-        "link": Routes.Settings.path
+        "link": Routes.Tickets.path
     },
     {
         "id": 4,
@@ -43,24 +37,6 @@ export default [
         "name": "Sign Up",
         "image": SignUpImg,
         "link": Routes.Signup.path
-    },
-    {
-        "id": 6,
-        "name": "Lock",
-        "image": LockImg,
-        "link": Routes.Lock.path
-    },
-    {
-        "id": 7,
-        "name": "Forgot password",
-        "image": ForgotPasswordImg,
-        "link": Routes.ForgotPassword.path
-    },
-    {
-        "id": 8,
-        "name": "Reset password",
-        "image": ResetPasswordImg,
-        "link": Routes.ResetPassword.path
     },
     {
         "id": 9,

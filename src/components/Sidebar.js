@@ -98,9 +98,9 @@ export default (props = {}) => {
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
               <NavItem title="Dashboard" link={Routes.DashboardOverview.path} icon={faChartPie} />
-              <NavItem title="Tickets" icon={faHandHoldingUsd} link={Routes.Transactions.path} />
-              <NavItem title="Categories" icon={faCog} link={Routes.Settings.path} />
-              <NavItem title="NPS Score Calculator" icon={faCalendarAlt} link={Routes.Settings.path} />
+              <NavItem title="Tickets" icon={faHandHoldingUsd} link={Routes.Tickets.path} />
+              {/* <NavItem title="Categories" icon={faCog} link={Routes.Settings.path} /> */}
+              {/* <NavItem title="NPS Score Calculator" icon={faCalendarAlt} link={Routes.Settings.path} /> */}
             </Nav>
           </div>
         </SimpleBar>
