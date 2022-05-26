@@ -1,9 +1,9 @@
 
 export const Routes = {
     // pages
-    Presentation: { path: "/" },
+    // Presentation: { path: "/" },
     DashboardOverview: { path: "/dashboard/overview" },
-    Tickets: { path: "/tickets" },
+    Tickets: { path: "/" },
     ViewTicket: { path: "/viewticket" },
     Signin: { path: "/examples/sign-in" },
     Signup: { path: "/examples/sign-up" },
