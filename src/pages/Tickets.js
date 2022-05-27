@@ -2,10 +2,25 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown } from '@themesberg/react-bootstrap';
+import { getAllTickets } from "../api/ThesisApi";
 
 import { TicketsTable } from "../components/Tables";
 
 export default () => {
+  const [tickets, setTickets] = React.useState({ tickets: [] });
+  
+  try {
+    getAllTickets().then(res => {
+      setTickets({tickets: res.body});
+  
+      console.log(tickets);
+    });
+  }
+  catch(e) {
+    console.log("error", e);
+  }
+
+
   return (
     <>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
