@@ -9,6 +9,7 @@ import { Routes } from "../routes";
 import { pageVisits, pageTraffic, pageRanking } from "../data/tables";
 import transactions from "../data/transactions";
 import commands from "../data/commands";
+import { getAllCategories, getAllTickets } from "../api/ThesisApi";
 
 const ValueChange = ({ value, suffix }) => {
   const valueIcon = value < 0 ? faAngleDown : faAngleUp;
@@ -25,11 +26,22 @@ const ValueChange = ({ value, suffix }) => {
 };
 
 
-export const TicketsTable = () => {
-  const totalTransactions = transactions.length;
+export const TicketsTable = (props) => {
+  console.log(props);
+  // const [tickets, setTickets] = React.useState({ tickets: [] });
+ 
+  // try {
+  //   getAllTickets().then(res => {
+  //     setTickets({tickets: res.body});
+  //   });
+  // }
+  // catch(e) {
+  //   console.log("error", e);
+  // }
+
 
   const TableRow = (props) => {
-    const { ticketNumber, data, position } = props;
+    const { id, postDate, ticketNumber, data, position } = props;
 
     return (
       <tr>
@@ -37,13 +49,11 @@ export const TicketsTable = () => {
           {position+1}
         </td>
         <td>
-          {/* <Card.Link as={Link} to={Routes.Invoice.path} className="fw-normal">
-            {ticketNumber}
-          </Card.Link> */} #123
+          {id}
         </td>
         <td>
           <span className="fw-normal">
-            {data}
+            {postDate}
           </span>
         </td>
         <td>
@@ -55,6 +65,7 @@ export const TicketsTable = () => {
     );
   };
 
+  // let ticketsList = tickets.tickets ? tickets.tickets : [];
   return (
     <Card border="light" className="table-wrapper table-responsive shadow-sm">
       <Card.Body className="pt-0">
@@ -68,7 +79,10 @@ export const TicketsTable = () => {
             </tr>
           </thead>
           <tbody>
-            {transactions.map((t, index) => <TableRow key={`transaction-${t.invoiceNumber}`} {...t} position={index}/>)}
+            {
+              transactions.map((t, index) => 
+                <TableRow key={`ticket-${index}`} {...t} position={index}/>
+              )}
           </tbody>
         </Table>
         {/* <Card.Footer className="px-3 border-0 d-lg-flex align-items-center justify-content-between">
@@ -97,10 +111,22 @@ export const TicketsTable = () => {
 };
 
 export const CategoriesTable = () => {
-  const totalTransactions = transactions.length;
+  const [categories, setCategories] = React.useState({ categories: [] });
+
+  try {
+    getAllCategories().then(res => {
+      setCategories({categories: res.body});
+      console.log(categories);
+    });
+  }
+  catch(e) {
+    console.log("error", e);
+  }
+
 
   const TableRow = (props) => {
-    const { ticketNumber, data, position } = props;
+    const { ticketNumber, data, position, name } = props;
+    console.log(props);
 
     return (
       <tr>
@@ -108,9 +134,7 @@ export const CategoriesTable = () => {
           {position+1}
         </td>
         <td>
-          {/* <Card.Link as={Link} to={Routes.Invoice.path} className="fw-normal">
-            {ticketNumber}
-          </Card.Link> */} #123
+          {name}
         </td>
         
         <td>
@@ -122,6 +146,7 @@ export const CategoriesTable = () => {
     );
   };
 
+  let categoriesList = categories.categories ? categories.categories : []; 
   return (
     <Card border="light" className="table-wrapper table-responsive shadow-sm">
       <Card.Body className="pt-0">
@@ -134,29 +159,9 @@ export const CategoriesTable = () => {
             </tr>
           </thead>
           <tbody>
-            {transactions.map((t, index) => <TableRow key={`transaction-${t.invoiceNumber}`} {...t} position={index}/>)}
+            {categoriesList.map((t, index) => <TableRow key={`transaction-${t.invoiceNumber}`} {...t} position={index}/>)}
           </tbody>
         </Table>
-        {/* <Card.Footer className="px-3 border-0 d-lg-flex align-items-center justify-content-between">
-          <Nav>
-            <Pagination className="mb-2 mb-lg-0">
-              <Pagination.Prev>
-                Previous
-              </Pagination.Prev>
-              <Pagination.Item active>1</Pagination.Item>
-              <Pagination.Item>2</Pagination.Item>
-              <Pagination.Item>3</Pagination.Item>
-              <Pagination.Item>4</Pagination.Item>
-              <Pagination.Item>5</Pagination.Item>
-              <Pagination.Next>
-                Next
-              </Pagination.Next>
-            </Pagination>
-          </Nav>
-          <small className="fw-bold">
-            Showing <b>{totalTransactions}</b> out of <b>25</b> entries
-          </small>
-        </Card.Footer> */}
       </Card.Body>
     </Card>
   );
