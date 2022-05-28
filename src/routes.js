@@ -4,7 +4,7 @@ export const Routes = {
     Presentation: { path: "/" },
     DashboardOverview: { path: "/dashboard/overview" },
     Tickets: { path: "/tickets" },
-    ViewTicket: { path: "/viewticket" },
+    ViewTicket: { path: "/ViewTicket" },
     Categories: { path: "/categories" },
     Nps: { path: "/nps" },
     Signin: { path: "/examples/sign-in" },

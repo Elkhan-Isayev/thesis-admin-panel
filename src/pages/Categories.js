@@ -4,8 +4,24 @@ import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-ic
 import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown } from '@themesberg/react-bootstrap';
 
 import { CategoriesTable } from "../components/Tables";
+import { getAllCategories } from "../api/ThesisApi";
 
 export default () => {
+  const [categories, setCategories] = React.useState({ categories: [] });
+  
+  React.useEffect(() => {
+    try {
+      getAllCategories().then(res => {
+        setCategories(res.body);
+      });
+    }
+    catch(e) {
+      console.log("error", e);
+    }
+  }, [])
+
+
+
   return (
     <>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
@@ -20,7 +36,7 @@ export default () => {
           </ButtonGroup>
         </div>
       </div>
-      <CategoriesTable />
+      <CategoriesTable categories={categories}/>
     </>
   );
 };

@@ -10,6 +10,7 @@ import { pageVisits, pageTraffic, pageRanking } from "../data/tables";
 import transactions from "../data/transactions";
 import commands from "../data/commands";
 import { getAllCategories, getAllTickets } from "../api/ThesisApi";
+import { useHistory } from "react-router-dom";
 
 const ValueChange = ({ value, suffix }) => {
   const valueIcon = value < 0 ? faAngleDown : faAngleUp;
@@ -29,7 +30,7 @@ const ValueChange = ({ value, suffix }) => {
 export const TicketsTable = (props) => {
   console.log(props);
   // const [tickets, setTickets] = React.useState({ tickets: [] });
- 
+  const { ticketList } = props;
   // try {
   //   getAllTickets().then(res => {
   //     setTickets({tickets: res.body});
@@ -42,6 +43,7 @@ export const TicketsTable = (props) => {
 
   const TableRow = (props) => {
     const { id, postDate, ticketNumber, data, position } = props;
+    const history = useHistory();
 
     return (
       <tr>
@@ -57,9 +59,12 @@ export const TicketsTable = (props) => {
           </span>
         </td>
         <td>
-        <Card.Link as={Link} to={Routes.ViewTicket.path} className="fw-normal">
-          <FontAwesomeIcon icon={faEye} className="dropdown-arrow" /> 
-        </Card.Link>
+        {/* <Card.Link as={Link} to={Routes.Vi.path + '/' + id} className="fw-normal"> */}
+          <div onClick={()=>{history.push(Routes.ViewTicket.path + '/' + id)}}>
+            <FontAwesomeIcon icon={faEye} className="dropdown-arrow" /> 
+          </div>
+
+        {/* </Card.Link> */}
         </td>
       </tr>
     );
@@ -80,7 +85,7 @@ export const TicketsTable = (props) => {
           </thead>
           <tbody>
             {
-              transactions.map((t, index) => 
+              ticketList.map((t, index) => 
                 <TableRow key={`ticket-${index}`} {...t} position={index}/>
               )}
           </tbody>
@@ -110,23 +115,13 @@ export const TicketsTable = (props) => {
   );
 };
 
-export const CategoriesTable = () => {
-  const [categories, setCategories] = React.useState({ categories: [] });
-
-  try {
-    getAllCategories().then(res => {
-      setCategories({categories: res.body});
-      console.log(categories);
-    });
-  }
-  catch(e) {
-    console.log("error", e);
-  }
+export const CategoriesTable = (props) => {
+  console.log(props);
+  
 
 
   const TableRow = (props) => {
     const { ticketNumber, data, position, name } = props;
-    console.log(props);
 
     return (
       <tr>
@@ -146,7 +141,8 @@ export const CategoriesTable = () => {
     );
   };
 
-  let categoriesList = categories.categories ? categories.categories : []; 
+  let categoriesList = props.categories.length > 0 ? props.categories : []; 
+  console.log(categoriesList);
   return (
     <Card border="light" className="table-wrapper table-responsive shadow-sm">
       <Card.Body className="pt-0">
@@ -159,10 +155,58 @@ export const CategoriesTable = () => {
             </tr>
           </thead>
           <tbody>
-            {categoriesList.map((t, index) => <TableRow key={`transaction-${t.invoiceNumber}`} {...t} position={index}/>)}
+            {categoriesList.map((t, index) => <TableRow key={`transaction-${t.id}`} {...t} position={index}/>)}
           </tbody>
         </Table>
       </Card.Body>
     </Card>
   );
 };
+
+export const TicketDetails = (props) => {
+  const {
+    browserFontSize,
+    browserName,
+    category,
+    email,
+    gender,
+    id,
+    isActive,
+    m1,
+    m2,
+    m3,
+    name,
+    postDate,
+    priority,
+    satScore,
+    screenResolution,
+    skillRate,
+    userIp
+  } = props.ticketDetails;
+
+  console.log(props);
+
+  return (
+    <>
+      <div>
+        <p>browserFontSize: {browserFontSize}</p>
+        <p>browserName: {browserName}</p>
+        {/* <p>category: {category}</p> */}
+        <p>email: {email}</p>
+        <p>gender: {gender}</p>
+        <p>id: {id}</p>
+        <p>isActive: {isActive}</p>
+        <p>m1: {m1}</p>
+        <p>m2: {m2}</p>
+        <p>m3: {m3}</p>
+        <p>name: {name}</p>
+        <p>postDate: {postDate}</p>
+        <p>priority: {priority}</p>
+        <p>satScore: {satScore}</p>
+        {/* <p>screenResolution: {screenResolution}</p> */}
+        <p>skillRate: {skillRate}</p>
+        <p>userIp: {userIp}</p>
+      </div>
+    </>
+  )
+}

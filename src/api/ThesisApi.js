@@ -14,6 +14,13 @@ const getAllTickets = () => {
     .catch(err => console.log(err));
 }
 
+const getTicketDetails = (id) => {
+    return axios
+    .get(`http://localhost:8084/api/v1//ticket/${id}`, headers)
+    .then(res => res.data)
+    .catch(err => console.log(err));
+}
+
 const getAllCategories = () => {
     return axios
     .get("http://localhost:8084/api/v1/categories", headers)
@@ -23,5 +30,6 @@ const getAllCategories = () => {
 
 export {
     getAllTickets,
-    getAllCategories
+    getAllCategories,
+    getTicketDetails
 };

@@ -7,7 +7,7 @@ import { Routes } from "../routes";
 import Upgrade from "./Upgrade";
 import DashboardOverview from "./dashboard/DashboardOverview";
 import Tickets from "./Tickets";
-import ViewTicket from './ViewTicket';
+import { ViewTicket } from './ViewTicket';
 import Categories from "./Categories";
 import Nps from "./Nps";
 import Signin from "./examples/Signin";
@@ -77,16 +77,13 @@ export default () => (
   <Switch>
       {/* pages */}
       {/* <Redirect from="/" to={Routes..path} component={DashboardOverview} /> */}
+    <RouteWithSidebar exact path={'/'} component={Tickets} />
+    <RouteWithSidebar exact path={Routes.Tickets.path} component={Tickets} />
     <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />
     {/* <RouteWithSidebar exact path={Routes.Upgrade.path} component={Upgrade} /> */}
-    <RouteWithSidebar exact path={Routes.Tickets.path} component={Tickets} />
-    <RouteWithSidebar exact path={Routes.ViewTicket.path} component={ViewTicket} />
+    <RouteWithSidebar exact path={Routes.ViewTicket.path + "/:id"} component={ViewTicket} />    
     <RouteWithSidebar exact path={Routes.Categories.path} component={Categories} />
     <RouteWithSidebar exact path={Routes.Nps.path} component={Nps} />
-
-    
-
-
     <Redirect to={Routes.NotFound.path} />
   </Switch>
 );
