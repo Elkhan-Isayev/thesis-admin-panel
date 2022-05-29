@@ -184,28 +184,83 @@ export const TicketDetails = (props) => {
     userIp
   } = props.ticketDetails;
 
-  console.log(props);
-
   return (
     <>
-      <div>
-        <p>browserFontSize: {browserFontSize}</p>
-        <p>browserName: {browserName}</p>
-        {/* <p>category: {category}</p> */}
-        <p>email: {email}</p>
-        <p>gender: {gender}</p>
-        <p>id: {id}</p>
-        <p>isActive: {isActive}</p>
-        <p>m1: {m1}</p>
-        <p>m2: {m2}</p>
-        <p>m3: {m3}</p>
-        <p>name: {name}</p>
-        <p>postDate: {postDate}</p>
-        <p>priority: {priority}</p>
-        <p>satScore: {satScore}</p>
-        {/* <p>screenResolution: {screenResolution}</p> */}
-        <p>skillRate: {skillRate}</p>
-        <p>userIp: {userIp}</p>
+      <div  >
+        <table className="table table-hover table-bordered" style={{width: "60%"}}>
+
+          <tbody>
+            <tr>
+              <td>BrowserFontSize</td>
+              <td>{browserFontSize}</td>
+            </tr>
+
+            <tr>
+              <td>BrowserName</td>
+              <td>{browserName}</td>
+            </tr>
+
+            <tr>
+              <td>Email</td>
+              <td>{email}</td>
+            </tr>
+
+            <tr>
+              <td>Gender</td>
+              <td>{gender}</td>
+            </tr>
+
+            <tr>
+              <td>IsActive</td>
+              <td>{isActive}</td>
+            </tr>
+
+            <tr>
+              <td>M1</td>
+              <td>{m1}</td>
+            </tr>
+
+            <tr>
+              <td>M2</td>
+              <td>{m2}</td>
+            </tr>
+            
+            <tr>
+              <td>M3</td>
+              <td>{m3}</td>
+            </tr>
+
+            <tr>
+              <td>Name</td>
+              <td>{name}</td>
+            </tr>
+
+            <tr>
+              <td>PostDate</td>
+              <td>{postDate}</td>
+            </tr>
+
+            <tr>
+              <td>Priority</td>
+              <td>{priority}</td>
+            </tr>
+
+            <tr>
+              <td>SatScore</td>
+              <td>{satScore}</td>
+            </tr>
+
+            <tr>
+              <td>UkillRate</td>
+              <td>{skillRate}</td>
+            </tr>
+
+            <tr>
+              <td>UserIp</td>
+              <td>{userIp}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </>
   )

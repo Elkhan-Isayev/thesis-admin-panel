@@ -9,21 +9,45 @@ const headers = {
 
 const getAllTickets = () => {
     return axios
-    .get("http://localhost:8084/api/v1/tickets", headers)
+    .get("http://173.212.221.237:39099/api/v1/tickets", headers)
     .then(res => res.data)
     .catch(err => console.log(err));
 }
 
 const getTicketDetails = (id) => {
     return axios
-    .get(`http://localhost:8084/api/v1//ticket/${id}`, headers)
+    .get(`http://173.212.221.237:39099/api/v1/ticket/${id}`, headers)
     .then(res => res.data)
     .catch(err => console.log(err));
 }
 
 const getAllCategories = () => {
     return axios
-    .get("http://localhost:8084/api/v1/categories", headers)
+    .get("http://173.212.221.237:39099/api/v1/categories", headers)
+    .then(res => res.data)
+    .catch(err => console.log(err));
+}
+
+const updateTicket = (ticketId, categoryId) => {
+    const body = {
+        "id": ticketId,
+        "category": {
+            "id": categoryId
+        }
+    }
+    return axios
+    .put("http://173.212.221.237:39099/api/v1/ticket", body)
+    .then(res => res.data)
+    .catch(err => console.log(err));
+}
+
+const updateTicketPriority = (ticketId, priority) => {
+    const body = {
+        "id": ticketId,
+        "priority": priority
+    }
+    return axios
+    .put("http://173.212.221.237:39099/api/v1/ticket/set-priority", body)
     .then(res => res.data)
     .catch(err => console.log(err));
 }
@@ -31,5 +55,7 @@ const getAllCategories = () => {
 export {
     getAllTickets,
     getAllCategories,
-    getTicketDetails
+    getTicketDetails,
+    updateTicket,
+    updateTicketPriority
 };
