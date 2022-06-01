@@ -6,6 +6,10 @@ import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown }
 import { TicketDetails, TicketsTable } from "../components/Tables";
 import { useHistory } from "react-router-dom";
 import { getTicketDetails, getAllCategories, updateTicket, updateTicketPriority } from "../api/ThesisApi";
+import { CounterWidget, CircleChartWidget } from "../components/Widgets";
+import { trafficShares } from "../data/charts";
+import { faSadTear, faSmile, faSkull, faMehBlank } from '@fortawesome/free-solid-svg-icons';
+
 
 export const ViewTicket = (props) => {
   const [ticketDetails, setTicketDetails] = React.useState({ ticketDetails: [] });
@@ -56,6 +60,7 @@ export const ViewTicket = (props) => {
     const index = e.target.selectedIndex;
     const el = e.target.childNodes[index]
     const option = el.getAttribute('data-id');
+    const npsTitle = "Total NPS Score:";
 
     try {
       updateTicketPriority(ticketDetails.id, option).then(res => {
@@ -73,11 +78,11 @@ export const ViewTicket = (props) => {
     <>
       <div style={{ backgroundColor: 'white' }}>
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
-          <div className="d-block mb-4 mb-md-0">
+          <div className="d-block mb-4 mb-md-0" style={{ padding: "10px" }}>
             <h4>#{ticketDetails.id}</h4>
             {/* <p className="mb-0">Your web analytics dashboard template.</p> */}
           </div>
-          <div className="btn-toolbar mb-2 mb-md-0">
+          <div className="btn-toolbar mb-2 mb-md-0" style={{ padding: "10px" }}>
             <div>
               <Form>
                 <Form.Group className="mb-3">
@@ -92,7 +97,7 @@ export const ViewTicket = (props) => {
               </Form>
             </div>
             {/* -------------------------------------------------------- */}
-            <div>
+            <div style={{ marginLeft: "10px" }}>
               <Form>
                 <Form.Group className="mb-3">
                   <Form.Label>Set category</Form.Label>
@@ -120,8 +125,61 @@ export const ViewTicket = (props) => {
             </div>
           </div>
         </div>
+        <div className="d-flex justify-content-between">
+          <div className="d-block col-sm-6" style={{ padding: "10px" }}>
+            <TicketDetails ticketDetails={ticketDetails} />
+          </div>
+          <div className="d-block col-sm-6" style={{ padding: "10px" }}>
 
-        <TicketDetails ticketDetails={ticketDetails} />
+            <div className="card border-0 shadow">
+              <div className="card-body">
+                
+                <div className="d-block">
+                  <div className="d-flex align-items-center me-5">
+                    <div className="icon-shape icon-sm icon-shape-danger rounded me-3">
+                      {
+                        ticketDetails.satScore >= 1 && ticketDetails.satScore <= 6 
+                        ? <FontAwesomeIcon icon={faSadTear} className={`text-danger`} size="6x"/>
+                        : (ticketDetails.satScore >= 7 && ticketDetails.satScore <= 8 
+                          ? <FontAwesomeIcon icon={faMehBlank} className={`text-primary`} size="6x"/>
+                          : <FontAwesomeIcon icon={faSmile} className={`text-tertiary`} size="6x"/>
+                          )
+                        
+                      
+
+                      //  () => {
+                      //   console.log(ticketDetails.satScore);
+                      //   if(ticketDetails.satScore >= 1 && ticketDetails.satScore <= 6) {
+                      //     return (
+                      //       <FontAwesomeIcon icon={faSadTear} className={`text-danger`} size="6x"/>
+                      //     )
+                      //   }
+                      //   else if(ticketDetails.satScore >= 7 && ticketDetails.satScore <= 8) {
+                      //     console.log("test2");
+                      //     return (
+                      //       <FontAwesomeIcon icon={faSkull} className={`text-primary`} size="6x"/>
+                      //     )
+                      //   }
+                      //   else {
+                      //     console.log("test3");
+                      //     return (
+                      //       <FontAwesomeIcon icon={faSmile} className={`text-tertiary`} size="6x"/>
+                      //     )
+                      //   }
+                      //  } 
+                      }
+                    </div>
+                    <div className="d-block">
+                      
+                      <h2 className="fs-5 fw-bold mb-1">{"User Satisfaction Score:" + " " + ticketDetails.satScore}</h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </>
   );

@@ -187,7 +187,7 @@ export const TicketDetails = (props) => {
   return (
     <>
       <div  >
-        <table className="table table-hover table-bordered" style={{width: "60%"}}>
+        <table className="table table-hover table-bordered" style={{width: "100%"}}>
 
           <tbody>
             <tr>
@@ -246,12 +246,7 @@ export const TicketDetails = (props) => {
             </tr>
 
             <tr>
-              <td>SatScore</td>
-              <td>{satScore}</td>
-            </tr>
-
-            <tr>
-              <td>UkillRate</td>
+              <td>SkillRate</td>
               <td>{skillRate}</td>
             </tr>
 
