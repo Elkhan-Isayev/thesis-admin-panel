@@ -6,8 +6,32 @@ import { Col, Row} from '@themesberg/react-bootstrap';
 
 import { CounterWidget, CircleChartWidget, SalesValueWidget, SalesValueWidgetPhone, AcquisitionWidget } from "../../components/Widgets";
 import { trafficShares } from "../../data/charts";
+import { getAllTickets, getAllCategories } from "../../api/ThesisApi";
 
 export default () => {
+  const [tickets, setTickets] = React.useState({ tickets: [] });
+  const [categories, setCategories] = React.useState({ categories: [] });
+  
+  React.useEffect(() => {
+    try {
+      getAllTickets().then(res => {
+        setTickets({tickets: res.body});
+      });
+    }
+    catch(e) {
+      console.log("error", e);
+    }
+    //
+    try {
+      getAllCategories().then(res => {
+        setCategories(res.body);
+      });
+    }
+    catch(e) {
+      console.log("error", e);
+    }
+  }, [])
+
   return (
     <>
        <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
@@ -21,11 +45,10 @@ export default () => {
       </div>
 
       <Row className="justify-content-md-center">
-        
         <Col xs={12} sm={6} xl={4} className="mb-4">
           <CounterWidget
             category="All Feedback Tickets"
-            title="112"
+            title={tickets.tickets.length}
             icon={faChartLine}
             iconColor="shape-secondary"
           />
@@ -34,7 +57,7 @@ export default () => {
         <Col xs={12} sm={6} xl={4} className="mb-4">
           <CounterWidget
             category="All Categories"
-            title="5"
+            title={categories.length}
             icon={faChartLine}
             iconColor="shape-secondary"
           />
@@ -67,9 +90,6 @@ export default () => {
           />
         </Col>
       </Row>
-
-      
-
     </>
   );
 };

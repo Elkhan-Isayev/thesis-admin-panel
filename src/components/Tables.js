@@ -42,7 +42,7 @@ export const TicketsTable = (props) => {
 
 
   const TableRow = (props) => {
-    const { id, postDate, email, ticketNumber, data, position } = props;
+    const { id, postDate, email, ticketNumber, data, position, category } = props;
     const history = useHistory();
 
     return (
@@ -51,6 +51,10 @@ export const TicketsTable = (props) => {
           {position + 1}
         </td>
         <td>
+          {
+            category.id == null ? (<span class="badge-md notification-count ms-2 badge rounded-pill text-primary bg-secondary">New</span>) : null 
+          }
+          &#160;
           {id}
         </td>
         <td>
@@ -184,7 +188,7 @@ export const TicketDetails = (props) => {
     priority,
     satScore,
     screenResolution,
-    skillRate,
+    skill,
     userIp
   } = props.ticketDetails;
 
@@ -251,7 +255,7 @@ export const TicketDetails = (props) => {
 
             <tr>
               <td>SkillRate</td>
-              <td>{skillRate}</td>
+              <td>{skill}</td>
             </tr>
 
             <tr>
