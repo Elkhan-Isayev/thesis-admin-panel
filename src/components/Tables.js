@@ -42,16 +42,19 @@ export const TicketsTable = (props) => {
 
 
   const TableRow = (props) => {
-    const { id, postDate, ticketNumber, data, position } = props;
+    const { id, postDate, email, ticketNumber, data, position } = props;
     const history = useHistory();
 
     return (
       <tr>
         <td >
-          {position+1}
+          {position + 1}
         </td>
         <td>
           {id}
+        </td>
+        <td>
+          {email}
         </td>
         <td>
           <span className="fw-normal">
@@ -59,12 +62,12 @@ export const TicketsTable = (props) => {
           </span>
         </td>
         <td>
-        {/* <Card.Link as={Link} to={Routes.Vi.path + '/' + id} className="fw-normal"> */}
-          <div onClick={()=>{history.push(Routes.ViewTicket.path + '/' + id)}}>
-            <FontAwesomeIcon icon={faEye} className="dropdown-arrow" /> 
+          {/* <Card.Link as={Link} to={Routes.Vi.path + '/' + id} className="fw-normal"> */}
+          <div onClick={() => { history.push(Routes.ViewTicket.path + '/' + id) }}>
+            <FontAwesomeIcon icon={faEye} className="dropdown-arrow" />
           </div>
 
-        {/* </Card.Link> */}
+          {/* </Card.Link> */}
         </td>
       </tr>
     );
@@ -79,14 +82,15 @@ export const TicketsTable = (props) => {
             <tr>
               <th className="border-bottom">#</th>
               <th className="border-bottom">Ticket ID</th>
+              <th className="border-bottom">User email</th>
               <th className="border-bottom">Issue Date</th>
               <th className="border-bottom">Manage</th>
             </tr>
           </thead>
           <tbody>
             {
-              ticketList.map((t, index) => 
-                <TableRow key={`ticket-${index}`} {...t} position={index}/>
+              ticketList.map((t, index) =>
+                <TableRow key={`ticket-${index}`} {...t} position={index} />
               )}
           </tbody>
         </Table>
@@ -117,7 +121,7 @@ export const TicketsTable = (props) => {
 
 export const CategoriesTable = (props) => {
   console.log(props);
-  
+
 
 
   const TableRow = (props) => {
@@ -126,22 +130,22 @@ export const CategoriesTable = (props) => {
     return (
       <tr>
         <td >
-          {position+1}
+          {position + 1}
         </td>
         <td>
           {name}
         </td>
-        
+
         <td>
-        <Card.Link as={Link} to={Routes.ViewTicket.path} className="fw-normal">
-          <FontAwesomeIcon icon={faEye} className="dropdown-arrow" /> 
-        </Card.Link>
+          <Card.Link as={Link} to={Routes.ViewTicket.path} className="fw-normal">
+            <FontAwesomeIcon icon={faEye} className="dropdown-arrow" />
+          </Card.Link>
         </td>
       </tr>
     );
   };
 
-  let categoriesList = props.categories.length > 0 ? props.categories : []; 
+  let categoriesList = props.categories.length > 0 ? props.categories : [];
   console.log(categoriesList);
   return (
     <Card border="light" className="table-wrapper table-responsive shadow-sm">
@@ -155,7 +159,7 @@ export const CategoriesTable = (props) => {
             </tr>
           </thead>
           <tbody>
-            {categoriesList.map((t, index) => <TableRow key={`transaction-${t.id}`} {...t} position={index}/>)}
+            {categoriesList.map((t, index) => <TableRow key={`transaction-${t.id}`} {...t} position={index} />)}
           </tbody>
         </Table>
       </Card.Body>
@@ -187,7 +191,7 @@ export const TicketDetails = (props) => {
   return (
     <>
       <div  >
-        <table className="table table-hover table-bordered" style={{width: "100%"}}>
+        <table className="table table-hover table-bordered" style={{ width: "100%" }}>
 
           <tbody>
             <tr>
@@ -224,7 +228,7 @@ export const TicketDetails = (props) => {
               <td>M2</td>
               <td>{m2}</td>
             </tr>
-            
+
             <tr>
               <td>M3</td>
               <td>{m3}</td>
