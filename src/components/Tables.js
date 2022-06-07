@@ -11,6 +11,7 @@ import transactions from "../data/transactions";
 import commands from "../data/commands";
 import { getAllCategories, getAllTickets } from "../api/ThesisApi";
 import { useHistory } from "react-router-dom";
+import moment from "moment-timezone";
 
 const ValueChange = ({ value, suffix }) => {
   const valueIcon = value < 0 ? faAngleDown : faAngleUp;
@@ -52,7 +53,7 @@ export const TicketsTable = (props) => {
         </td>
         <td>
           {
-            category.id == null ? (<span class="badge-md notification-count ms-2 badge rounded-pill text-primary bg-secondary">New</span>) : null 
+            category.id == null ? (<span class="badge-md notification-count ms-2 badge rounded-pill text-primary bg-secondary">New</span>) : null
           }
           &#160;
           {id}
@@ -194,18 +195,13 @@ export const TicketDetails = (props) => {
 
   return (
     <>
-      <div  >
+      <div>
         <table className="table table-hover table-bordered" style={{ width: "100%" }}>
 
           <tbody>
             <tr>
-              <td>BrowserFontSize</td>
-              <td>{browserFontSize}</td>
-            </tr>
-
-            <tr>
-              <td>BrowserName</td>
-              <td>{browserName}</td>
+              <td>User's Name and Surname</td>
+              <td>{name}</td>
             </tr>
 
             <tr>
@@ -219,48 +215,98 @@ export const TicketDetails = (props) => {
             </tr>
 
             <tr>
-              <td>IsActive</td>
-              <td>{isActive}</td>
-            </tr>
-
-            <tr>
-              <td>M1</td>
-              <td>{m1}</td>
-            </tr>
-
-            <tr>
-              <td>M2</td>
-              <td>{m2}</td>
-            </tr>
-
-            <tr>
-              <td>M3</td>
-              <td>{m3}</td>
-            </tr>
-
-            <tr>
-              <td>Name</td>
-              <td>{name}</td>
-            </tr>
-
-            <tr>
-              <td>PostDate</td>
+              <td>Feedback Submit Date</td>
               <td>{postDate}</td>
             </tr>
-
             <tr>
-              <td>Priority</td>
-              <td>{priority}</td>
-            </tr>
-
-            <tr>
-              <td>SkillRate</td>
+              <td>User's Skill rank</td>
               <td>{skill}</td>
             </tr>
+            <tr>
+              <td>Browser Name</td>
+              <td>{browserName}</td>
+            </tr>
+            <tr>
+              <td>Browser Font Size</td>
+              <td>{browserFontSize}</td>
+            </tr>
+            <tr>
+              <td>User Ip</td>
+              <td>{userIp}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </>
+  )
+}
+
+export const TicketDetailsSecond = (props) => {
+
+  const {
+    m1,
+    m2,
+    m3,
+    m1desc,
+    m2desc,
+    m3desc,
+    startTime,
+    endTime,
+    finaldesc
+  } = props.ticketDetails;
+
+
+  return (
+    <>
+      <div style={{ overflowX: "auto", overflowY: "auto" }}>
+        <table className="table table-hover table-bordered" 
+        style={{ overflow:"hidden", width: "100%", textAlign: "center", tableLayout:"fixed" }}>
+
+          <tbody>
+            <tr>
+              <th colSpan="3">User's choice</th>
+            </tr>
+            <tr>
+              <th>Alternative 1</th>
+              <th>Alternative 2</th>
+              <th>Alternative 3</th>
+            </tr>
 
             <tr>
-              <td>UserIp</td>
-              <td>{userIp}</td>
+              <td>Version {m1 ? m1 : "-"}</td>
+              <td>Version {m2 ? m2 : "-"}</td>
+              <td>Version {m3 ? m3 : "-"}</td>
+            </tr>
+
+            <tr style={{minHeight: "10px"}}>
+              <td style={{ overflow:"auto", whiteSpace: "initial"}}><p>{m1desc ? m1desc : "-"}</p></td>
+              <td style={{ overflow:"auto", whiteSpace: "initial"}}><p>{m2desc ? m2desc : "-"}</p></td>
+              <td style={{ overflow:"auto", whiteSpace: "initial"}}><p>{m3desc ? m3desc : "-"}</p></td>
+            </tr>
+
+            <tr>
+              <th colSpan="3">User's Final Opinion</th>
+            </tr>
+            <tr>
+              <td colSpan="3" style={{whiteSpace: "initial"}}>{finaldesc ? finaldesc : "-"}</td>
+            </tr>
+
+            <tr>
+              <td colSpan="3" >
+                User started:
+                &nbsp;
+                <label style={{ color: "red" }}>{moment(startTime).format("DD/MM/YYYY, h:mm:ss")}</label>
+                &nbsp;
+                and finished:
+                &nbsp;
+                <label style={{ color: "red" }}>{moment(endTime).format("DD/MM/YYYY, h:mm:ss")}</label>
+                &nbsp;
+                and spent
+                &nbsp;
+                <label style={{ color: "red" }}>{moment(endTime).diff(moment(startTime), 'minutes')}</label>
+                &nbsp;
+                mins for the feedback.
+              </td>
             </tr>
           </tbody>
         </table>

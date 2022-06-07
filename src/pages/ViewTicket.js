@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown } from '@themesberg/react-bootstrap';
 
-import { TicketDetails, TicketsTable } from "../components/Tables";
+import { TicketDetails, TicketsTable, TicketDetailsSecond } from "../components/Tables";
 import { useHistory } from "react-router-dom";
 import { getTicketDetails, getAllCategories, updateTicket, updateTicketPriority } from "../api/ThesisApi";
 import { CounterWidget, CircleChartWidget } from "../components/Widgets";
 import { trafficShares } from "../data/charts";
-import { faSadTear, faSmile, faSkull, faMehBlank } from '@fortawesome/free-solid-svg-icons';
+import { faSadTear, faSmile, faSkull, faMehBlank, faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 
 export const ViewTicket = (props) => {
@@ -133,44 +133,24 @@ export const ViewTicket = (props) => {
 
             <div className="card border-0 shadow">
               <div className="card-body">
-                
-                <div className="d-block">
-                  <div className="d-flex align-items-center me-5">
-                    <div className="icon-shape icon-sm icon-shape-danger rounded me-3">
-                      {
-                        ticketDetails.satScore >= 1 && ticketDetails.satScore <= 6 
-                        ? <FontAwesomeIcon icon={faSadTear} className={`text-danger`} size="6x"/>
-                        : (ticketDetails.satScore >= 7 && ticketDetails.satScore <= 8 
-                          ? <FontAwesomeIcon icon={faMehBlank} className={`text-primary`} size="6x"/>
-                          : <FontAwesomeIcon icon={faSmile} className={`text-tertiary`} size="6x"/>
-                          )
-                        
-                      
 
-                      //  () => {
-                      //   console.log(ticketDetails.satScore);
-                      //   if(ticketDetails.satScore >= 1 && ticketDetails.satScore <= 6) {
-                      //     return (
-                      //       <FontAwesomeIcon icon={faSadTear} className={`text-danger`} size="6x"/>
-                      //     )
-                      //   }
-                      //   else if(ticketDetails.satScore >= 7 && ticketDetails.satScore <= 8) {
-                      //     console.log("test2");
-                      //     return (
-                      //       <FontAwesomeIcon icon={faSkull} className={`text-primary`} size="6x"/>
-                      //     )
-                      //   }
-                      //   else {
-                      //     console.log("test3");
-                      //     return (
-                      //       <FontAwesomeIcon icon={faSmile} className={`text-tertiary`} size="6x"/>
-                      //     )
-                      //   }
-                      //  } 
+                <div className="d-block">
+                  <div className="align-items-center me-5">
+                    <div className="icon-sm icon-shape-danger rounded me-3" style={{ textAlign: "center" }}>
+                      {
+                        ticketDetails.satScore >= 1 && ticketDetails.satScore <= 6
+                          ? <FontAwesomeIcon icon={faSadTear} className={`text-danger`} size="10x" />
+                          : (ticketDetails.satScore >= 7 && ticketDetails.satScore <= 8
+                            ? <FontAwesomeIcon icon={faMehBlank} className={`text-primary`} size="10x" />
+                            : <FontAwesomeIcon icon={faSmile} className={`text-tertiary`} size="10x" />
+                          )
+
+
                       }
                     </div>
-                    <div className="d-block">
-                      
+                    <br />
+                    <div className="d-block" style={{ textAlign: "center" }}>
+
                       <h2 className="fs-5 fw-bold mb-1">{"User Satisfaction Score:" + " " + ticketDetails.satScore}</h2>
                     </div>
                   </div>
@@ -179,7 +159,10 @@ export const ViewTicket = (props) => {
             </div>
           </div>
         </div>
-
+        <hr />
+        <div style={{ padding: "10px" }}>
+          <TicketDetailsSecond ticketDetails={ticketDetails} />
+        </div>
       </div>
     </>
   );
