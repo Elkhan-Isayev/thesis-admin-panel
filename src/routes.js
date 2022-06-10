@@ -7,7 +7,7 @@ export const Routes = {
     ViewTicket: { path: "/ViewTicket" },
     Categories: { path: "/categories" },
     Nps: { path: "/nps" },
-    Signin: { path: "/examples/sign-in" },
+    Signin: { path: "/sign-in" },
     Signup: { path: "/examples/sign-up" },
     NotFound: { path: "/examples/404" },
     ServerError: { path: "/examples/500" },

@@ -1,16 +1,18 @@
 
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCashRegister, faChartLine} from '@fortawesome/free-solid-svg-icons';
+import { faCashRegister, faChartLine, faFolderPlus, faTicketAlt, faHistory, faBook} from '@fortawesome/free-solid-svg-icons';
 import { Col, Row} from '@themesberg/react-bootstrap';
 
 import { CounterWidget, CircleChartWidget, SalesValueWidget, SalesValueWidgetPhone, AcquisitionWidget } from "../../components/Widgets";
 import { trafficShares } from "../../data/charts";
-import { getAllTickets, getAllCategories } from "../../api/ThesisApi";
+import { getAllTickets, getAllCategories, getTicketCountByCategory } from "../../api/ThesisApi";
+import axios from "axios";
 
 export default () => {
   const [tickets, setTickets] = React.useState({ tickets: [] });
   const [categories, setCategories] = React.useState({ categories: [] });
+  // const [bugsCount, setBugsCount] = React.useState
   
   React.useEffect(() => {
     try {
@@ -24,13 +26,34 @@ export default () => {
     //
     try {
       getAllCategories().then(res => {
-        setCategories(res.body);
+        console.log(res.body);
+        let cats = res.body;
+       
+        cats.forEach(element => {
+          
+          getTicketCountByCategory(element.name).then(res => {
+            // console.log(res);
+            element.count = res.body;
+            setCategories({categories: cats});
+          });
+          
+        });
+        
+        
+        
       });
     }
     catch(e) {
       console.log("error", e);
     }
   }, [])
+
+  // console.log(categories);
+  let totalCounts = 0;
+  categories.categories.forEach(element => {
+    totalCounts += element.count;
+  });
+  // console.log(totalCounts);
 
   return (
     <>
@@ -48,8 +71,8 @@ export default () => {
         <Col xs={12} sm={6} xl={4} className="mb-4">
           <CounterWidget
             category="All Feedback Tickets"
-            title={tickets.tickets.length}
-            icon={faChartLine}
+            title={ `${tickets.tickets.length}`}
+            icon={faTicketAlt}
             iconColor="shape-secondary"
           />
         </Col>
@@ -57,38 +80,37 @@ export default () => {
         <Col xs={12} sm={6} xl={4} className="mb-4">
           <CounterWidget
             category="All Categories"
-            title={categories.length}
-            icon={faChartLine}
+            title={`${categories.categories.length}`}
+            icon={faBook}
             iconColor="shape-secondary"
           />
         </Col>
 
         <Col xs={12} sm={6} xl={4} className="mb-4">
           <CounterWidget
-            category="Bugs"
-            title="5"
-            icon={faChartLine}
+            category="Tickets without Category"
+            title={tickets.tickets.length - totalCounts}
+            icon={faFolderPlus}
             iconColor="shape-secondary"
           />
         </Col>
 
-        <Col xs={12} sm={6} xl={4} className="mb-4">
-          <CounterWidget
-            category="Insights"
-            title="5"
-            icon={faChartLine}
-            iconColor="shape-secondary"
-          />
-        </Col>
 
-        <Col xs={12} sm={6} xl={4} className="mb-4">
-          <CounterWidget
-            category="Praise"
-            title="5"
-            icon={faChartLine}
-            iconColor="shape-secondary"
-          />
-        </Col>
+        {
+          categories.categories.map((element, index) => (
+            <Col xs={12} sm={6} xl={4} className="mb-4" key={`id-${index}`}>
+              <CounterWidget
+                category={element.name}
+                title={element.count}
+                icon={faChartLine}
+                iconColor="shape-secondary"
+              />
+            </Col>
+          ))
+        }
+        
+
+        
       </Row>
     </>
   );

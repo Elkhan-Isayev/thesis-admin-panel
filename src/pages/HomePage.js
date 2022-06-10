@@ -77,7 +77,12 @@ export default () => (
   <Switch>
       {/* pages */}
       {/* <Redirect from="/" to={Routes..path} component={DashboardOverview} /> */}
-    <RouteWithSidebar exact path={'/'} component={Tickets} />
+    
+    
+    <Route exact path={'/'} component={Signin} />
+
+
+    {/* <Route exaxt path={Routes.Signin.path} component={Signin} /> */}
     <RouteWithSidebar exact path={Routes.Tickets.path} component={Tickets} />
     <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />
     {/* <RouteWithSidebar exact path={Routes.Upgrade.path} component={Upgrade} /> */}

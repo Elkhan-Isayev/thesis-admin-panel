@@ -61,11 +61,21 @@ const getNPSDetails = () => {
     .catch(err => console.log(err));
 }
 
+const getTicketCountByCategory = (catName) => {
+    return axios
+    .get(baseURL + `/ticket-count-by-category?catName=${catName}`)
+    .then(res => res.data)
+    .catch(err => console.log(err));
+}
+
+
+
 export {
     getAllTickets,
     getAllCategories,
     getTicketDetails,
     updateTicket,
     updateTicketPriority,
-    getNPSDetails
+    getNPSDetails,
+    getTicketCountByCategory
 };
